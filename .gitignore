@@ -1,0 +1,7 @@
+bin/
+*.java~
+source/edu/oakland/javadoc_api/
+*.html
+build/
+.gradle/
+*.sh
