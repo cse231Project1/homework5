@@ -5,8 +5,8 @@ import java.util.Arrays;
 
 public class SimpleStack<E> {
 	
-	private int stackIncrement;
-	private int stackCount;
+	private int stackIncrement; //Not used
+	private int stackCount; //Not used
 	private E[] stackData;
 
 	public SimpleStack(){
@@ -73,8 +73,49 @@ public class SimpleStack<E> {
 			return null;
 		}
 	}
+	public int searchByValue(Object q){
+		int index;
+
+		try{
+			index = this.stackData.length;
+		} catch(NullPointerException ex){
+			return -1;
+		}
+
+		for(int j = 0; j < index; j++){
+			if(q.equals(this.stackData[j])){
+				return j;
+			}
+		}
+		return -1;
+	}
+	public SimpleStack<Integer> searchAllByValue(Object q){
+		SimpleStack<Integer> locations = new SimpleStack<Integer>();
+		int index;
+		
+		try{
+			index = this.stackData.length;
+		} catch(NullPointerException ex){
+			return null;
+		}
+
+		for(int j = 0; j < index; j++){
+			if(q.equals(this.stackData[j])){
+				locations.push(j);
+			}
+		}
+		return locations;
+	}
 	public int search(Object q){
-		for(int j = 0; j < this.stackData.length; j++){
+		int index;
+
+		try{
+			index = this.stackData.length;
+		} catch(NullPointerException ex){
+			return -1;
+		}
+
+		for(int j = 0; j < index; j++){
 			if(q == this.stackData[j]){
 				return j;
 			}
@@ -83,8 +124,15 @@ public class SimpleStack<E> {
 	}
 	public SimpleStack<Integer> searchAll(Object q){
 		SimpleStack<Integer> locations = new SimpleStack<Integer>();
+		int index;
+		
+		try{
+			index = this.stackData.length;
+		} catch(NullPointerException ex){
+			return null;
+		}
 
-		for(int j = 0; j < this.stackData.length; j++){
+		for(int j = 0; j < index; j++){
 			if(q == this.stackData[j]){
 				locations.push(j);
 			}
