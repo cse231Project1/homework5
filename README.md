@@ -17,8 +17,9 @@
 
 ### Usage:
 
-**Run Tests**: `#> gradle test`
-**Build**: `#> gradle build`
+**Run Tests**: `gradle test`
+
+**Build**: `gradle build`
 
 ### Dependedncies:
 
