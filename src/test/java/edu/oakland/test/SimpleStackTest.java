@@ -54,7 +54,7 @@ public class SimpleStackTest extends TestCase{
 		assertEquals(rand, stackTest.peek());
 	}
 	public void testSearch(){
-		stackTest.push(new Integer[] {5, 10, 15, 20, 25, 30});
-		assertEquals(4, stackTest.search(new Integer(25)));
+		stackTest.push(new Integer[] {5, 10, 15, 20, rand, 30});
+		assertEquals(4, stackTest.search(rand));
 	}
 }

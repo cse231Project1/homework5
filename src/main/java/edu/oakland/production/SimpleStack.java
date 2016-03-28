@@ -75,7 +75,7 @@ public class SimpleStack<E> {
 	}
 	public int search(Object q){
 		for(int j = 0; j < this.stackData.length; j++){
-			if(q.equals(this.stackData[j])){
+			if(q == this.stackData[j]){
 				return j;
 			}
 		}
@@ -85,7 +85,7 @@ public class SimpleStack<E> {
 		SimpleStack<Integer> locations = new SimpleStack<Integer>();
 
 		for(int j = 0; j < this.stackData.length; j++){
-			if(q.equals(this.stackData[j])){
+			if(q == this.stackData[j]){
 				locations.push(j);
 			}
 		}
