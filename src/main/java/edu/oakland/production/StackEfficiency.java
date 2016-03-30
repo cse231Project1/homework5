@@ -35,14 +35,7 @@ public class StackEfficiency {
 				if(count == 2){
 					break;
 				}
-				switch(count){
-					case 0:
-						odds[0] = value;
-					case 1: 
-						odds[1] = value;
-					default:
-						;
-				}
+				odds[count] = value;
 				count++;
 			}
 		}
@@ -59,14 +52,7 @@ public class StackEfficiency {
 				if(count == 2){
 					break;
 				}
-				switch(count){
-					case 0:
-						odds[0] = value;
-					case 1: 
-						odds[1] = value;
-					default:
-						;
-				}
+				odds[count] = value;
 				count++;
 			}
 		}
