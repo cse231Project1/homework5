@@ -93,6 +93,6 @@ public class IntStack {
 		}	
 	}
 	public void clear(){
-		this.stack = new int[];
+		this.stack = new int[0];
 	}
 }
