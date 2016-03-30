@@ -19,10 +19,19 @@ public class StackEfficiency {
 		}
 		return newArray;
 	}
+	private Integer[] convertArray(int[] intArray){
+		Integer[] convertedArray = new Integer[intArray.length];
+		int j = 0;
+		for(int i: intArray){
+			convertedArray[j] = intArray[j];
+			j++;
+		}
+		return convertedArray;
+	}
 	public void createArray(int size){
 		this.array = generateArray(size);
 		stackInt.push(this.array);
-		//stackObj.push(this.array);
+		stackObj.push(convertArray(this.array));
 	}
 	public int[] findOdds(){
 		int count = 0;
@@ -60,11 +69,12 @@ public class StackEfficiency {
 	}
 
 	public static void main(String[] args) {
-		int[] sizes = new int[] {20, 2000, 20000, 20000000};
+		int[] sizes = new int[] {20, 2000, 20000, 2000000};
 		StackEfficiency manager = new StackEfficiency();
 		long startTime, endTime;
 
 		for(int i: sizes){
+			System.out.println("Testing array of size " +i);
 			manager.createArray(i);
 			startTime = System.currentTimeMillis();
 			for(int j: manager.findIntOdds()){
@@ -72,10 +82,12 @@ public class StackEfficiency {
 			}
 			endTime = System.currentTimeMillis();
 			System.out.printf("Found Odds in %d\n", (endTime-startTime));
-			// startTime = System.currentTimeMillis();
-			// manager.findOdds();
-			// endTime = System.currentTimeMillis();
-			// System.out.printf("Found Odds in %d\n", (endTime-startTime));
+			startTime = System.currentTimeMillis();
+			for(int j: manager.findOdds()){
+				System.out.println("Odds: " + j + ", ");
+			}
+			endTime = System.currentTimeMillis();
+			System.out.printf("Found Integer Odds in %d\n", (endTime-startTime));
 		}
 	}	
 }
