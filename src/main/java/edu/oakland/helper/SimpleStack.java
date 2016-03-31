@@ -6,10 +6,19 @@ import java.util.Arrays;
 public class SimpleStack<E> {
 	
 	private int stackIncrement; //Not used
-	private int stackCount; //Not used
+	private int stackCount;
 	private E[] stackData;
 
 	public SimpleStack(){
+		this.stackCount = 0;
+	}
+	public SimpleStack(E e){
+		this.stackCount = 0;
+		this.push(e);	
+	}
+	public SimpleStack(E[] e){
+		this.stackCount = 0;
+		this.push(e);
 	}
 	public void printStack(){
 		if(this.empty()){
@@ -33,8 +42,10 @@ public class SimpleStack<E> {
 		try {
 			if(this.stackData.length > 0){
 				return false;
-			} else {
+			} else if (this.stackCount == 0){
 				return true;
+			} else {
+				return false;
 			}
 		} catch(NullPointerException e){
 			return true;
@@ -42,13 +53,9 @@ public class SimpleStack<E> {
 	}
 	public E pop(){
 		try{
-			E e = this.stackData[this.stackData.length-1];
-
-			E[] temp = this.stackData;
-			this.stackData = createArray(e, temp.length-1);
-			for(int j = 0; j < this.stackData.length; j++){
-				this.stackData[j] = temp[j];
-			}
+			E e = this.stackData[this.stackCount-1];
+			this.stackData[this.stackCount-1] = null;
+			this.stackCount--;
 			return e;
 		} catch (NullPointerException ex){
 			return null;
@@ -57,7 +64,7 @@ public class SimpleStack<E> {
 	public E peek()
 	{
 		try {
-			return this.stackData[this.stackData.length-1];
+			return this.stackData[this.stackCount-1];
 		}
 		catch(NullPointerException ex){
 			return null;
@@ -67,7 +74,7 @@ public class SimpleStack<E> {
 		int index;
 
 		try{
-			index = this.stackData.length;
+			index = this.stackCount;
 		} catch(NullPointerException ex){
 			return -1;
 		}
@@ -84,7 +91,7 @@ public class SimpleStack<E> {
 		int index;
 		
 		try{
-			index = this.stackData.length;
+			index = this.stackCount;
 		} catch(NullPointerException ex){
 			return null;
 		}
@@ -100,7 +107,7 @@ public class SimpleStack<E> {
 		int index;
 
 		try{
-			index = this.stackData.length;
+			index = this.stackCount;
 		} catch(NullPointerException ex){
 			return -1;
 		}
@@ -117,7 +124,7 @@ public class SimpleStack<E> {
 		int index;
 		
 		try{
-			index = this.stackData.length;
+			index = this.stackCount;
 		} catch(NullPointerException ex){
 			return null;
 		}
@@ -130,40 +137,53 @@ public class SimpleStack<E> {
 		return locations;
 	}
 	public void push(E e){
-		E[] temp = this.stackData;
+		E[] temp;
 		int index;
+
 		try {
-			index = temp.length + 1;
-			this.stackData = createArray(e, index--);
+			index = this.stackData.length;
+		} catch(NullPointerException ex){
+			index = 10;
+			this.stackData = createArray(e, index);
+		}
+
+		if(this.stackCount >= index){
+			temp = this.stackData;
+			this.stackData = createArray(e, this.stackCount*2);
 			for (int j = 0; j < temp.length; j++){
 				this.stackData[j] = temp[j];
 			}
-		} catch(NullPointerException ex){
-			index = 1;
-			this.stackData = createArray(e, index--);
 		}
-		
-		this.stackData[index] = e;
+		this.stackData[this.stackCount] = e;
+		this.stackCount++;
 	}
 	public void push(E[] e){
-		E[] temp = this.stackData;
-		int index, start;
+		E[] temp;
+		int index, newLast, last;
+		
 		try{
-			index = temp.length + e.length;
-			start = temp.length;
-			this.stackData = createArray(e, index);
-			for (int j = 0; j < temp.length; j++){
-				this.stackData[j] = temp[j];
-			}
+			index = this.stackData.length;
+			newLast = this.stackCount + e.length;
+			last = this.stackCount;
 		} catch(NullPointerException ex){
-			index = e.length;
-			start = 0;
+			index = e.length*2;
+			newLast = e.length;
+			last = 0;
 			this.stackData = createArray(e, index);
 		}
 		
-		for(int j = start; j < index; j++){
-			this.stackData[j] = e[j-start];
+		if(newLast >= index){
+			temp = this.stackData;
+			this.stackData = createArray(e, newLast*2);
+			for (int j = 0; j < temp.length; j++){
+				this.stackData[j] = temp[j];
+			}
 		}
+
+		for(int j = last; j < newLast; j++){
+			this.stackData[j] = e[j-last];
+		}
+		this.stackCount+=e.length;
 	}
 	public void clear(){
 		this.stackData = createArray(this.stackData[0],1);

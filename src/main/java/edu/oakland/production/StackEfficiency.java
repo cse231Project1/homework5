@@ -14,8 +14,9 @@ public class StackEfficiency {
 
 	private int[] generateArray(int size){
 		int[] newArray =  new int[size];
+		int max = 20000;
 		for (int i = 0; i < size; i++){
-			newArray[i] = (int)(size*Math.random() + 20);
+			newArray[i] = (int)(max*Math.random() + 20);
 		}
 		return newArray;
 	}
