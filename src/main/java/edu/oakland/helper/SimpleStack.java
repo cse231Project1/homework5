@@ -42,7 +42,7 @@ public class SimpleStack<E> {
 		try {
 			if(this.stackData.length > 0){
 				return false;
-			} else if (this.stackCount == 0){
+			} else if (this.stackCount <= 0){
 				return true;
 			} else {
 				return false;

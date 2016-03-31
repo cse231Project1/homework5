@@ -41,7 +41,8 @@ public class StackEfficiency {
 
 		while(!stackObj.empty()) {
 			value = stackObj.pop().intValue();
-			if((value % 2 == 1)){
+
+			if((value % 2 == 1) && (value > 600) && (value < 6000)){
 				if(count == 2){
 					break;
 				}
@@ -58,7 +59,7 @@ public class StackEfficiency {
 		
 		while(!stackInt.empty()) {
 			value = stackInt.pop();
-			if((value % 2 == 1)){
+			if((value % 2 == 1) && (value > 600) && (value < 6000)){
 				if(count == 2){
 					break;
 				}
