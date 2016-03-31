@@ -40,10 +40,10 @@ public class SimpleStack<E> {
 	}
 	public boolean empty(){
 		try {
-			if(this.stackData.length > 0){
-				return false;
-			} else if (this.stackCount <= 0){
+			if(this.stackCount <= 0){
 				return true;
+			} else if (this.stackData.length > 0){
+				return false;
 			} else {
 				return false;
 			}
