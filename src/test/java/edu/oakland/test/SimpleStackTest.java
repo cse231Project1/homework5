@@ -36,6 +36,11 @@ public class SimpleStackTest extends TestCase{
 		assertTrue(stackTest.empty());
 		stackTest.push(rand);
 		assertFalse(stackTest.empty());
+		stackTest.push(new Integer[] {1, 2, 3, 4, 5, 6});
+		while(!stackTest.empty()){
+			stackTest.pop();
+		}
+		assertTrue(stackTest.empty());
 	}
 	public void testPop(){
 		stackTest.push(test1);
