@@ -5,20 +5,23 @@ import java.util.Arrays;
 
 public class SimpleStack<E> {
 	
-	private int stackIncrement; //Not used
+	private int stackIncrement;
 	private int stackCount;
 	private E[] stackData;
 
 	public SimpleStack(){
 		this.stackCount = 0;
+		this.stackIncrement = 0;
 	}
 	public SimpleStack(E e){
 		this.stackCount = 0;
-		this.push(e);	
+		this.push(e);
+		this.stackIncrement = 0;
 	}
 	public SimpleStack(E[] e){
 		this.stackCount = 0;
 		this.push(e);
+		this.stackIncrement = 0;
 	}
 	public void printStack(){
 		if(this.empty()){
@@ -42,8 +45,6 @@ public class SimpleStack<E> {
 		try {
 			if(this.stackCount <= 0){
 				return true;
-			} else if (this.stackData.length > 0){
-				return false;
 			} else {
 				return false;
 			}
@@ -139,6 +140,7 @@ public class SimpleStack<E> {
 	public void push(E e){
 		E[] temp;
 		int index;
+		int increment;
 
 		try {
 			index = this.stackData.length;
@@ -147,9 +149,15 @@ public class SimpleStack<E> {
 			this.stackData = createArray(e, index);
 		}
 
+		if(this.stackIncrement <=0){
+			increment = this.stackCount;
+		}else{
+			increment = this.stackIncrement;
+		}
+
 		if(this.stackCount >= index){
 			temp = this.stackData;
-			this.stackData = createArray(e, this.stackCount*2);
+			this.stackData = createArray(e, this.stackCount+increment);
 			for (int j = 0; j < temp.length; j++){
 				this.stackData[j] = temp[j];
 			}
@@ -159,7 +167,7 @@ public class SimpleStack<E> {
 	}
 	public void push(E[] e){
 		E[] temp;
-		int index, newLast, last;
+		int index, newLast, last, increment;
 		
 		try{
 			index = this.stackData.length;
@@ -171,10 +179,16 @@ public class SimpleStack<E> {
 			last = 0;
 			this.stackData = createArray(e, index);
 		}
+
+		if(this.stackIncrement <=0){
+			increment = newLast;
+		}else{
+			increment = this.stackIncrement;
+		}
 		
 		if(newLast >= index){
 			temp = this.stackData;
-			this.stackData = createArray(e, newLast*2);
+			this.stackData = createArray(e, newLast+increment);
 			for (int j = 0; j < temp.length; j++){
 				this.stackData[j] = temp[j];
 			}
@@ -186,6 +200,6 @@ public class SimpleStack<E> {
 		this.stackCount+=e.length;
 	}
 	public void clear(){
-		this.stackData = createArray(this.stackData[0],1);
+		this.stackData = createArray(this.stackData[0],this.stackIncrement);
 	}
 }

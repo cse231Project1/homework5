@@ -78,18 +78,18 @@ public class StackEfficiency {
 		for(int i: sizes){
 			System.out.println("Testing array of size " +i);
 			manager.createArray(i);
-			startTime = System.currentTimeMillis();
+			startTime = System.nanoTime();
 			for(int j: manager.findIntOdds()){
 				System.out.println("Odds: " + j + ", ");
 			}
-			endTime = System.currentTimeMillis();
-			System.out.printf("Found Odds in %d\n", (endTime-startTime));
-			startTime = System.currentTimeMillis();
+			endTime = System.nanoTime();
+			System.out.printf("Found Odds in %dns\n", (endTime-startTime));
+			startTime = System.nanoTime();
 			for(int j: manager.findOdds()){
 				System.out.println("Odds: " + j + ", ");
 			}
-			endTime = System.currentTimeMillis();
-			System.out.printf("Found Integer Odds in %d\n", (endTime-startTime));
+			endTime = System.nanoTime();
+			System.out.printf("Found Integer Odds in %dns\n", (endTime-startTime));
 		}
 	}	
 }

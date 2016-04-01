@@ -2,11 +2,24 @@ package edu.oakland.helper;
 
 public class IntStack {
 	private int[] stack;
+	private int stackCount;
+	private int stackIncrement;
 
 	public IntStack() {
+		this.stackCount = 0;
+		this.stackIncrement = 0;
 	}
-	public IntStack(int[] initialStack){
-		this.stack = initialStack;
+	public IntStack(int i){
+		this.stackCount = 0;
+		this.stack = new int[10];
+		this.push(i);
+		this.stackIncrement = 0;
+	}
+	public IntStack(int[] i){
+		this.stackCount = 0;
+		this.stack = i;
+		this.stackIncrement = 0;
+
 	}
 	public void printStack(){
 		if(this.empty()){
@@ -20,36 +33,44 @@ public class IntStack {
 	}
 	public boolean empty(){
 		try {
-			if(this.stack.length > 0){
-				return false;
-			} else {
+			if(this.stackCount <= 0){
 				return true;
+			} else {
+				return false;
 			}
 		} catch(NullPointerException e){
 			return true;
 		}
 	}
 	public int pop(){
-		int i = this.stack[this.stack.length-1];
-
-		//try - catch
-
-		int[] temp = this.stack;
-		this.stack = new int[temp.length-1];
-		for(int j = 0; j < this.stack.length; j++){
-			this.stack[j] = temp[j];
+		try{
+			int i = this.stack[this.stackCount-1];
+			this.stack[this.stackCount-1] = -1;
+			this.stackCount--;
+			return i;
+		} catch (NullPointerException e){
+			return -1;
 		}
-		return i;
 	}
 	public int peek(){
-		int i = this.stack[this.stack.length-1];
-		// try - catch
-		return i;
+		try{
+			return this.stack[this.stackCount-1];
+		} catch(NullPointerException e){
+			return -1;
+		}
 	}
-	public IntStack search(int i){
+	public int search(int i){
+		for(int j = 0; j < this.stackCount; j++){
+			if(i == this.stack[j]){
+				return j;
+			}
+		}
+		return -1;
+	}
+	public IntStack searchAll(int i){
 		IntStack locations = new IntStack();
 
-		for(int j = 0; j < this.stack.length; j++){
+		for(int j = 0; j < this.stackCount; j++){
 			if(i == this.stack[j]){
 				locations.push(j);
 			}
@@ -57,42 +78,64 @@ public class IntStack {
 		return locations;
 	}
 	public void push(int i){
-		int[] temp = this.stack;
+		int[] temp;
 		int index;
+		int increment;
+
 		try {
-			index = temp.length + 1;
-			this.stack = new int[index--];
-			for (int j = 0; j < temp.length; j++){
+			index = this.stack.length;
+		} catch(NullPointerException e){
+			index = 10;
+			this.stack = new int[index];
+		}
+		if(this.stackIncrement <= 0){
+			increment = this.stackCount;
+		}else{
+			increment = this.stackIncrement;
+		}
+		if(this.stackCount >= index){
+			temp = this.stack;
+			this.stack = new int[this.stackCount+increment];
+			for (int j=0; j < temp.length; j++){
 				this.stack[j] = temp[j];
 			}
-		} catch(NullPointerException e){
-			index = 1;
-			this.stack = new int[index--];
 		}
-		
-		this.stack[index] = i;
+		this.stack[this.stackCount] = i;
+		this.stackCount++;
 	}
 	public void push(int[] i){
-		int[] temp = this.stack;
-		int index, start;
+		int[] temp;
+		int index, newLast, last, increment;
+
 		try{
-			index = temp.length + i.length;
-			start = temp.length;
-			this.stack = new int[index];
-			for (int j = 0; j < temp.length; j++){
-				this.stack[j] = temp[j];
-			}
+			index = this.stack.length;
+			newLast = this.stackCount + i.length;
+			last = this.stackCount;
 		} catch(NullPointerException e){
-			index = i.length;
-			start = 0;
+			index = i.length*2;
+			newLast = i.length;
+			last = 0;
 			this.stack = new int[index];
 		}
-		
-		for(int j = start; j < index; j++){
-			this.stack[j] = i[j-start];
-		}	
+		if(this.stackIncrement <= 0){
+			increment = newLast;
+		}else{
+			increment = this.stackIncrement;
+		}
+		if(newLast >= index){
+			temp = this.stack;
+			this.stack = new int[newLast+increment];
+			for(int j = 0; j < temp.length; j++){
+				this.stack[j] = temp[j];
+			}
+		}
+
+		for(int j = last; j < newLast; j++){
+			this.stack[j] = i[j-last];
+		}
+		this.stackCount+=i.length;	
 	}
 	public void clear(){
-		this.stack = new int[0];
+		this.stack = new int[this.stackIncrement];
 	}
 }

@@ -19,7 +19,6 @@ public class SimpleStackTest extends TestCase{
 		rand = new Integer((int)(100*Math.random()));
 		test1 = new Integer(4);
 		test2 = new Integer(231);
-
 	}
 
 	/**
