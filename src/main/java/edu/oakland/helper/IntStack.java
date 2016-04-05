@@ -1,26 +1,56 @@
 package edu.oakland.helper;
 
-public class IntStack {
-	private int[] stack;
-	private int stackCount;
-	private int stackIncrement;
 
+/**
+*	IntStack is the implementation of a stack using a int array as the 
+*	underlying data structure. A stores data using LIFO (last in first out).
+*
+*	@author Chase Hulderman
+*	@author Miguel Millan
+*	@version version 1.0 - 160405
+*	@since version 1.0
+*/
+public class IntStack {
+	private int[] stack;			//Contains the data of the stack
+	private int stackCount;			//Keeps track of the top of the stack
+	private int stackIncrement;		//Value used to resize the stack
+
+	/**
+	*	Constructs an empty stack with an initial size of ten.
+	*/
 	public IntStack() {
 		this.stackCount = 0;
 		this.stackIncrement = 0;
+		this.stack = new int[10];
 	}
+	
+	/**
+	*	Constructs a stack and pushes the given integer onto it.
+	*
+	*	@param i the given integer to push onto the stack
+	*/	
 	public IntStack(int i){
 		this.stackCount = 0;
 		this.stack = new int[10];
 		this.push(i);
 		this.stackIncrement = 0;
 	}
+	
+	/**
+	*	Constructs a stack using a given array of integers.
+	*
+	*	@param i given integer array
+	*/
 	public IntStack(int[] i){
-		this.stackCount = 0;
+		this.stackCount = i.length;
 		this.stack = i;
 		this.stackIncrement = 0;
 
 	}
+	
+	/**
+	*	Prints out the values of the stack.
+	*/
 	public void printStack(){
 		if(this.empty()){
 			System.out.println("The Stack is empty");
@@ -31,6 +61,12 @@ public class IntStack {
 			System.out.println();
 		}
 	}
+	
+	/**
+	*	Verifies whether the stack is empty or not.
+	* 	
+	*	@return true if the stack is empty, false otherwise.
+	*/
 	public boolean empty(){
 		try {
 			if(this.stackCount <= 0){
@@ -42,6 +78,12 @@ public class IntStack {
 			return true;
 		}
 	}
+	
+	/**
+	*	Removes the element at the top of the stack and returns its value.
+	*
+	*	@return the value popped off the stack.
+	*/
 	public int pop(){
 		try{
 			int i = this.stack[this.stackCount-1];
@@ -52,6 +94,12 @@ public class IntStack {
 			return -1;
 		}
 	}
+	
+	/**
+	*	Returns the element at the top of the stack without removing it.
+	*
+	*	@return the value at the top of the stack.
+	*/
 	public int peek(){
 		try{
 			return this.stack[this.stackCount-1];
@@ -59,6 +107,13 @@ public class IntStack {
 			return -1;
 		}
 	}
+	
+	/**
+	*	Searches the stack for a specified integer, and returns its index value.
+	*
+	*	@param i the value to search for
+	*	@return the index value of i, or -1 if i is not in the stack. 
+	*/
 	public int search(int i){
 		for(int j = 0; j < this.stackCount; j++){
 			if(i == this.stack[j]){
@@ -67,6 +122,14 @@ public class IntStack {
 		}
 		return -1;
 	}
+	
+	/**
+	*	Searches the stack for all locations of the given integer, and returns
+	*	an IntStack containing the indecies where the integer was found.
+	*
+	*	@param i the value to search for
+	*	@return an IntStack containing all the indecies of i, or an empty IntStack.
+	*/
 	public IntStack searchAll(int i){
 		IntStack locations = new IntStack();
 
@@ -77,6 +140,12 @@ public class IntStack {
 		}
 		return locations;
 	}
+	
+	/**
+	*	Pushes the given value onto the top of the stack.
+	*
+	*	@param i the value to push onto the stack.
+	*/
 	public void push(int i){
 		int[] temp;
 		int index;
@@ -103,6 +172,12 @@ public class IntStack {
 		this.stack[this.stackCount] = i;
 		this.stackCount++;
 	}
+	
+	/**
+	*	Pushes many integers onto the stack.
+	*
+	*	@param i an integer array to push on the stack.
+	*/
 	public void push(int[] i){
 		int[] temp;
 		int index, newLast, last, increment;
@@ -135,6 +210,10 @@ public class IntStack {
 		}
 		this.stackCount+=i.length;	
 	}
+	
+	/**
+	*	Clears the stack.
+	*/
 	public void clear(){
 		this.stack = new int[this.stackIncrement];
 	}

@@ -21,16 +21,13 @@ public class IntStackTest extends TestCase{
 		test2 = 231;
 	}
 
-	/**
-	*	simpleStack() test method tests...
-	*
-	*/
 	public void testPush(){
 		stackTest.push(test1);
 		assertEquals(test1, stackTest.pop());
 		stackTest.push(new int[] {1, 2, 3, 4, 5, 6});
 		assertEquals(6, stackTest.pop());
 	}
+	
 	public void testEmpty(){
 		assertTrue(stackTest.empty());
 		stackTest.push(rand);
@@ -41,6 +38,7 @@ public class IntStackTest extends TestCase{
 		}
 		assertTrue(stackTest.empty());
 	}
+	
 	public void testPop(){
 		stackTest.push(test1);
 		assertEquals(test1, stackTest.pop());
