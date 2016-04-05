@@ -179,36 +179,8 @@ public class IntStack {
 	*	@param i an integer array to push on the stack.
 	*/
 	public void push(int[] i){
-		int[] temp;
-		int index, newLast, last, increment;
-
-		try{
-			index = this.stack.length;
-			newLast = this.stackCount + i.length;
-			last = this.stackCount;
-		} catch(NullPointerException e){
-			index = i.length*2;
-			newLast = i.length;
-			last = 0;
-			this.stack = new int[index];
-		}
-		if(this.stackIncrement <= 0){
-			increment = newLast;
-		}else{
-			increment = this.stackIncrement;
-		}
-		if(newLast >= index){
-			temp = this.stack;
-			this.stack = new int[newLast+increment];
-			for(int j = 0; j < temp.length; j++){
-				this.stack[j] = temp[j];
-			}
-		}
-
-		for(int j = last; j < newLast; j++){
-			this.stack[j] = i[j-last];
-		}
-		this.stackCount+=i.length;	
+		for(int k =0; k < i.length; k++)
+			this.push(i[k]);
 	}
 	
 	/**
