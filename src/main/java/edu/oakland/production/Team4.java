@@ -47,26 +47,6 @@ public class Team4 {
 			value = stack.pop().intValue();
 			condition = (value % 2 == 1) && (value > 600) && (value < 6000);
 			if(condition){
-				System.out.println("Count was " + count);
-				System.out.println("Pushing... " + value);
-				odds[count] = value;
-				System.out.println("Array now has " + odds[count]);
-				count++;
-			}
-		}
-		return odds;
-	}
-	public int[] findIntOdds(){
-		int count = 0;
-		int value;
-		int[] odds = new int[2];
-		
-		while(!stackInt.empty()) {
-			value = stackInt.pop();
-			if((value % 2 == 1) && (value > 600) && (value < 6000)){
-				if(count == 2){
-					break;
-				}
 				odds[count] = value;
 				count++;
 			}
