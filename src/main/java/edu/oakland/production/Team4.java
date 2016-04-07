@@ -44,11 +44,8 @@ public class Team4 {
 		while(!stack.empty() && count < 2) {
 			value = stack.pop().intValue();
 			condition = (value % 2 == 1) && (value > 600) && (value < 6000);
-			if(condition){
-				System.out.println("Count was " + count);
-				System.out.println("Pushing... " + value);
+			if(condition){}
 				odds[count] = value;
-				System.out.println("Array now has " + odds[count]);
 				count++;
 			}
 		}
