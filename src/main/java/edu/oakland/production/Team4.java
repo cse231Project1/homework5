@@ -28,6 +28,8 @@ public class Team4 {
 	}
 	/**
 	*	Constructs a stack with the int[] input, sets up initial values.
+	*
+	*	@param array	an int array to pass to the stack.
 	*/
 	public Team4(int[] array){
 		this.stack = new StackExtended<Integer>();

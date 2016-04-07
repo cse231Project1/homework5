@@ -19,10 +19,16 @@ public class StackExtended<E> extends Stack<E> {
 	*	Constructor allows passing an element or element array
 	*	to initialize the stack without calling a successive push().
 	*
+	*	@param	e	some element.
 	*/
 	public StackExtended(E e){
 		this.push(e);
 	}
+	/**
+	*	Overloaded constructor for element arrays.
+	*
+	*	@param	e	some element array.
+	*/
 	public StackExtended(E[] e){
 		this.push(e);
 	}
