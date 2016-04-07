@@ -4,7 +4,7 @@ import java.util.*;
 
 public class StackExtended<E> extends Stack<E> {
 	public StackExtended(){
-		;
+		super();
 	}
 	public StackExtended(E e){
 		this.push(e);
