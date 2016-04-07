@@ -21,10 +21,6 @@ public class SimpleStackTest extends TestCase{
 		test2 = new Integer(231);
 	}
 
-	/**
-	*	simpleStack() test method tests...
-	*
-	*/
 	public void testPush(){
 		stackTest.push(test1);
 		assertEquals(test1, stackTest.pop());
