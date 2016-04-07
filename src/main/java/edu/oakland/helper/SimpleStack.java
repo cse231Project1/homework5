@@ -3,6 +3,16 @@ package edu.oakland.helper;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
+/**
+*	SimpleStack is the implementation of a stack using generics and generic arrays
+*	as the underlying data structure. Stores data using LIFO (last in first out).
+*
+*	@author Chase Hulderman
+*	@author Miguel Millan
+*	@version version 1.0 - 160405
+*	@since version 1.0
+*/
+
 public class SimpleStack<E> {
 	
 	private int stackIncrement;
