@@ -17,7 +17,7 @@ public class Team4 {
 	private StackExtended<Integer> stack;  //The stack upon which operations are run.
 
 	private int[] values;  //Holds the odds values found.
-	private long time;     //Holds the time value to find odds.
+	private long time;     //Holds the time value, in milliseconds, to find odds.
 	
 	/**
 	*	Constructs an empty stack, sets up initial values
