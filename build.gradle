@@ -7,7 +7,14 @@ mainClassName = 'SimpleStackTest'
 repositories {
   mavenCentral()
 }
-
+javadoc {
+    options.overview('overview.html')
+    options.showAll()
+    options.encoding('UTF-8')
+    options.setUse(true)
+    options.author(true)
+    options.version(true)
+}
 dependencies {
   testCompile group: 'junit', name: 'junit', version: '4.+' 
   //testCompile "junit:junit:4.10"

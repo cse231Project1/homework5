@@ -3,7 +3,7 @@ package edu.oakland.helper;
 import java.util.*;
 
 /**
-*	StackExtended is a wrapper class meant to extend and provide pushing or array 
+*	StackExtended is a wrapper class meant to extend and provide pushing of array 
 *	values to the stack as opposed to inidividual elements.
 *
 *	@author Chase Hulderman
