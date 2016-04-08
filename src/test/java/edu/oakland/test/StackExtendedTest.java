@@ -3,19 +3,19 @@ package edu.oakland.test;
 import edu.oakland.helper.*;
 import junit.framework.*;
 
-public class SimpleStackTest extends TestCase{
+public class StackExtendedTest extends TestCase{
 
 	/**
 	*	Private class values
 	*/
-	private SimpleStack<Integer> stackTest;
+	private StackExtended<Integer> stackTest;
 	private Integer test1, test2, rand;
 	
 	/**
 	*	setUp() creates necessary objects to test
 	*/
 	public void setUp(){
-		stackTest = new SimpleStack<Integer>();
+		stackTest = new StackExtended<Integer>();
 		rand = new Integer((int)(100*Math.random()));
 		test1 = new Integer(4);
 		test2 = new Integer(231);
@@ -52,9 +52,5 @@ public class SimpleStackTest extends TestCase{
 		assertEquals(test2, stackTest.peek());
 		stackTest.push(rand);
 		assertEquals(rand, stackTest.peek());
-	}
-	public void testSearch(){
-		stackTest.push(new Integer[] {5, 10, 15, 20, rand, 30});
-		assertEquals(4, stackTest.search(rand));
 	}
 }
