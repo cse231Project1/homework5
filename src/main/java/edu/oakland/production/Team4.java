@@ -92,6 +92,15 @@ public class Team4 {
 	}
 
 	/**
+	*	Mutator method allows for after intialization change of the manager class
+	*	working stack.
+	*
+	*	@param intArray	an integer array to push onto the stack
+	*/
+	public void setStack(int[] intArray){
+		this.stack.push(convertArray(array)); 
+	}
+	/**
 	*	returns the odds values found
 	*
 	*	@return	the odds values found.
