@@ -94,7 +94,7 @@ public class Team4 {
 	*	@param intArray	an integer array to push onto the stack
 	*/
 	public void setStack(int[] intArray){
-		this.stack.push(convertArray(array)); 
+		this.stack.push(convertArray(intArray)); 
 	}
 	/**
 	*	returns the odds values found
@@ -110,6 +110,10 @@ public class Team4 {
 	*	@return	the time taken.
 	*/
 	public long getTime(){
-		return this.time;
+		try{
+			return this.time;
+		}catch(NullPointerException e){
+			return -1L;
+		}
 	}	
 }
