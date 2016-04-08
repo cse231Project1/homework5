@@ -24,7 +24,7 @@ public class Team4 {
 	*/
 	public Team4(){
 		this.stack = new StackExtended<Integer>();
-		values = new int[2];
+		values = new int[] {-1, -1};
 	}
 
 	/**
@@ -35,7 +35,7 @@ public class Team4 {
 	public Team4(int[] array){
 		this.stack = new StackExtended<Integer>();
 		this.stack.push(convertArray(array));
-		values = new int[2];
+		values = new int[] {-1, -1};
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class Team4 {
 	*	@param intArray	an integer array to push onto the stack
 	*/
 	public void setStack(int[] intArray){
-		this.stack.push(convertArray(array)); 
+		this.stack.push(convertArray(intArray)); 
 	}
 	/**
 	*	returns the odds values found
@@ -115,7 +115,11 @@ public class Team4 {
 	*	@return	the time taken.
 	*/
 	public long getTime(){
-		return this.time;
+		try{
+			return this.time;
+		}catch(NullPointerException e){
+			return -1L;
+		}
 	}	
 	public static void main(String[] args) {
 		ArrayGen arrayGen = new ArrayGen();
