@@ -24,7 +24,7 @@ public class Team4 {
 	*/
 	public Team4(){
 		this.stack = new StackExtended<Integer>();
-		values = new int[] {-1, -1};
+		this.values = new int[] {-1, -1};
 	}
 
 	/**
@@ -35,13 +35,13 @@ public class Team4 {
 	public Team4(int[] array){
 		this.stack = new StackExtended<Integer>();
 		this.stack.push(convertArray(array));
-		values = new int[] {-1, -1};
+		this.evaluate();
 	}
 
 	/**
 	*	Evaluates the odds for the stack, and records the time taken.
 	*/
-	public void evaluate(){
+	private void evaluate(){
 		long startTime, endTime, diff;
 		startTime = System.nanoTime();
 		this.values = findOdds(this.stack);
@@ -98,7 +98,8 @@ public class Team4 {
 	*	@param intArray	an integer array to push onto the stack
 	*/
 	public void setStack(int[] intArray){
-		this.stack.push(convertArray(intArray)); 
+		this.stack.push(convertArray(intArray));
+		evaluate();
 	}
 	/**
 	*	returns the odds values found
@@ -110,9 +111,9 @@ public class Team4 {
 	}
 
 	/**
-	*	returns the time taken
+	*	returns the time taken in milliseconds
 	*
-	*	@return	the time taken.
+	*	@return	the time taken in milliseconds
 	*/
 	public long getTime(){
 		try{
@@ -130,7 +131,6 @@ public class Team4 {
 			System.out.println("Testing array of size " +i);
 			arrayGen.setArray(i);
 			manager = new Team4(arrayGen.getArray());
-			manager.evaluate();
 			for(int j: manager.getValues()){
 				System.out.println("Odds: " + j + ", ");
 			}
