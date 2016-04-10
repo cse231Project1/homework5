@@ -14,7 +14,6 @@ public class TestTeam4 extends TestCase{
 		this.testManager = new Team4(this.testArray);
 	}
 	public void testEvaluate(){
-		this.testManager.evaluate();
 		assertEquals(1457, this.testManager.getValues()[0]);
 		assertEquals(5653, this.testManager.getValues()[1]);
 	}
