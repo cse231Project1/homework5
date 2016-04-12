@@ -1,7 +1,6 @@
 package edu.oakland.production;
 
 import edu.oakland.helper.*;
-import java.util.concurrent.TimeUnit; //Needed to convert time.
 
 /**
 *	Team4 is a manager class to find the first two odd int's in a provided array,
@@ -13,8 +12,8 @@ import java.util.concurrent.TimeUnit; //Needed to convert time.
 *	@since version 1.0
 */
 
-public class Team4 {
-	private StackExtended<Integer> stack;  //The stack upon which operations are run.
+public class Team4Primitive {
+	private IntStack stack;  //The stack upon which operations are run.
 
 	private int[] values;  //Holds the odds values found.
 	private long time;     //Holds the time value, in nanoseconds, to find odds.
@@ -22,8 +21,8 @@ public class Team4 {
 	/**
 	*	Constructs an empty stack, sets up initial values
 	*/
-	public Team4(){
-		this.stack = new StackExtended<Integer>();
+	public Team4Primitive(){
+		this.stack = new IntStack();
 		this.values = new int[] {-1, -1};
 	}
 	/**
@@ -31,9 +30,9 @@ public class Team4 {
 	*
 	*	@param array	an int array to pass to the stack.
 	*/
-	public Team4(int[] array){
-		this.stack = new StackExtended<Integer>();
-		this.stack.push(convertArray(array));
+	public Team4Primitive(int[] array){
+		this.stack = new IntStack();
+		this.stack.push(array);
 		this.evaluate();
 	}
 	/**
@@ -46,40 +45,23 @@ public class Team4 {
 		endTime = System.nanoTime();
 		diff = endTime - startTime;
 		this.time = diff;
-		//this.time = TimeUnit.NANOSECONDS.convert(diff, TimeUnit.NANOSECONDS);
-	}
-	/**
-	*	Converts a primitive int[] array to an Integer[] array for working with
-	*	StackExtended.
-	*
-	*	@param	intArray		the input array
-	*	@return	convertedArray	the output array.
-	*/
-	private Integer[] convertArray(int[] intArray){
-		Integer[] convertedArray = new Integer[intArray.length];
-		int j = 0;
-		for(int i: intArray){
-			convertedArray[j] = intArray[j];
-			j++;
-		}
-		return convertedArray;
 	}
 
 	/**
-	*	Finds the odds in a StackExtended given a stack. Only finds the first two
+	*	Finds the odds in a SimpleStack given a stack. Only finds the first two
 	*	in LIFO order.
 	*
 	*	@param	stack	a stack to perform the operation on.
 	*	@return	odds	the int array of two odds.
 	*/
-	private int[] findOdds(StackExtended<Integer> stack){
+	private int[] findOdds(IntStack stack){
 		int count = 0;
 		int value;
 		int[] odds = new int[] {-1, -1};
 		boolean condition;
 
 		while(!stack.empty() && count < 2) {
-			value = stack.pop().intValue();
+			value = stack.pop();
 			condition = (value % 2 == 1) && (value > 600) && (value < 6000);
 			if(condition){
 				odds[count] = value;
@@ -95,7 +77,7 @@ public class Team4 {
 	*	@param intArray	an integer array to push onto the stack
 	*/
 	public void setStack(int[] intArray){
-		this.stack.push(convertArray(intArray));
+		this.stack.push(intArray);
 		evaluate();
 	}
 	/**
